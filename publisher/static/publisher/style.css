@@ -1,0 +1,51 @@
+body{
+    background: white url("images/download.png");
+}
+
+.navbar{
+    border-radius: 0;
+}
+.navbar-brand{
+    font-family: 'satisfy', cursive;
+}
+.center_div{
+    border: 1px solid white;
+    margin: 0 auto;
+
+    width:40%;/* value of your choice which suits your alignment */
+}
+
+/*.centerdiv1{
+    position: relative;
+    border: 1px solid white;
+    margin: 0 auto;
+    width:30%;*//* value of your choice which suits your alignment *//*
+    height:40%;
+}*/
+img{
+    width: 10%;
+    height: 10%;
+}
+fieldset{
+font-family: "Times New Roman", Times, serif;
+font-weight: normal;
+}
+
+.thumbnail{
+    /*position: relative;
+
+    display: inline-block;*/
+    margin: 5px;
+  /*white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+ display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch; *//* should be default, but just in case *//*
+  float: left;
+  width: 30%;*/
+}
+.img-responsive{
+    width:100%;
+}

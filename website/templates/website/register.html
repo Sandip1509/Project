@@ -1,0 +1,26 @@
+{% extends "website/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load staticfiles %}
+<div class="container">
+    <div class="form-group">
+
+        <form method="POST">
+            {% csrf_token %}
+            <center><img src="{% static 'publisher/images/icon.png'%}"/></center>
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> <center>Custom Ebook</center></legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account?<a class="ml-2" href="#">Sign In</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock content %}
