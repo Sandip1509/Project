@@ -6,7 +6,7 @@
     <link  rel="icon" type="image/x-icon" href="{%static 'publisher/images/icon.png'%}"/>
     <title>{% block title %}CustomEBook{% endblock %}</title>
     {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy" type="text/css">
     <link rel="stylesheet" type="text/css" href="{% static 'publisher/style.css' %}"/>
@@ -17,7 +17,7 @@
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
-                {{ message }}&nbsp;&nbsp;<a class="ml-2" href="#">Sign In</a>
+                {{ message }}&nbsp;&nbsp;<a class="ml-2" href="{% url 'website:login' %}">Sign In</a>
             </div>
         {% endfor %}
     {% endif %}

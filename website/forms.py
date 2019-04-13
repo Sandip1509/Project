@@ -1,25 +1,31 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import UserProfile
-UserType= [
+
+userType = [
     ('Customer','Customer'),
     ('Publisher','Publisher'),
 ]
 
-class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    accountType = forms.CharField(label='User Type', widget=forms.Select(choices=UserType))
+
+class UserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields =['username','email', 'password1','password2']
+        fields=['username','email','password1','password2']
 
-    def save(self, commit=True):
-        if not commit:
-            raise NotImplementedError("Can't create User and UserProfile without database save")
-        user = super(RegistrationForm, self).save(commit=True)
-        user_profile = UserProfile(user=user, accountType=self.cleaned_data['accountType'])
-        user_profile.save()
-        return user, user_profile
+class RegistrationForm(forms.ModelForm):
+    accountType = forms.CharField(label='Account Type', widget=forms.Select(choices=userType))
 
+    class Meta:
+        model = UserProfile
+        fields=['accountType']
+
+class LogInForm(AuthenticationForm):
+    username = forms.CharField(max_length=500)
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']

@@ -1,38 +1,14 @@
-""" from django.shortcuts import render, get_object_or_404
-    from .models import Album,Song
-
-    def index(request):
-        all_albums = Album.objects.all()
-        context ={'all_albums' : all_albums}
-        return render(request, 'music/index.html' ,context)
-
-    def detail(request, album_id):
-        album = get_object_or_404(Album, pk=album_id)
-        return render(request, 'music/detail.html', {'album' : album})
-
-    def favourite(request, album_id):
-        album = get_object_or_404(Album, pk=album_id)
-        try:
-            selected_song = album.song_set.get(pk=request.POST['song'])
-        except (KeyError, Song.DoesNotExist):
-            return render(request, 'music/detail.html', {
-                'album' : album,
-                'error_message' : "You did not select a valid song",
-        })
-        else:
-            selected_song.is_favourite=True
-            selected_song.save()
-            return render(request, 'music/detail.html', {'album': album})
-"""
-
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.shortcuts import render_to_response
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate, login
-from django.views.generic import View
 from .models import EBook, Chapter
-from .forms import MyForm
+from .forms import MyForm, MyChapterForm
+from django.http import HttpResponse
+from .script import pdf_splitter
+from django.contrib import messages
+
 
 class HomeView(generic.ListView):
     template_name = "publisher/home.html"
@@ -40,14 +16,46 @@ class HomeView(generic.ListView):
     def get_queryset(self):
         return EBook.objects.all()
 
-class DetailView(generic.DetailView):
-    model = EBook
-    template_name = "publisher/detail.html"
+class ChapterDetailView(generic.ListView):
+    template_name = "publisher/chapterDetail.html"
+    context_object_name = "ebook"
+    def get_queryset(self):
+        return EBook.objects.get(id=self.kwargs.get('pk'))
 
 
 class EBookCreate(CreateView):
     form_class = MyForm
     template_name = "publisher/ebook_form.html"
+
+
+def createChapters(request, pk):
+    print(request.POST)
+    chapter_form = MyChapterForm()
+    if request.method == 'POST':
+        print("success")
+        chapter_form = MyChapterForm(data=request.POST)
+        if chapter_form.is_valid:
+            print("hello")
+            start_page = request.POST.get('start_page')
+            end_page = request.POST.get('end_page')
+            chapter_name=request.POST.get('name')
+            c_id=pk
+            print(c_id,type(c_id))
+            book_name=str(EBook.objects.get(id=c_id))
+            chapter = chapter_form.save(commit=False)
+            chapter.ebook = EBook.objects.get(id=c_id)
+            chapter.save()
+            messages.success(request, f' Chapter created for!',book_name)
+            url_name=EBook.objects.get(id=c_id).bookurl
+
+            print(url_name+'\\'+book_name)
+            ebook=url_name+'\\'+book_name
+            print('Type:', type(ebook))
+            print(ebook)
+            pdf_splitter(ebook,start_page,end_page,chapter_name,book_name)
+    else:
+        chapter_form = MyChapterForm()
+    return render(request, 'publisher/createchapters.html', {'form':chapter_form})
 
 
 class EBookUpdate(UpdateView):
@@ -59,37 +67,8 @@ class EBookDelete(DeleteView):
     model = EBook
     success_url = reverse_lazy('publisher:home')
 
-"""
-class UserFormView(View):
-    form_class = UserForm
-    template_name = "music/registration_form.html"
-
-    #display blank form
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
 
 
-    #process from data
-    def post(self,request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            user = form.save(commit=False)
-
-            # cleaned (nnormalized) data
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user.set_password(password)
-            user.save()
-
-
-            #returns User Objects if credentials are correct
-            user = authenticate(username= username, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request,user)
-                    return redirect('music:index')
-
-     return render(request, self.template_name, {'form': form})
-"""
+class ChapterDelete(DeleteView):
+    model = Chapter
+    success_url = reverse_lazy('publisher:home')

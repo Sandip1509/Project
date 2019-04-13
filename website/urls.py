@@ -9,5 +9,7 @@ urlpatterns = [
     # /general/login/
     #url('^login$', views.LogInView.as_view(), name='login'),
     # /general/register/
-    url(r'^$', views.register, name='register'),
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^signup/$', views.register , name='signup'),
+    url(r'^logout/$',views.user_logout,name='logout'),
 ]

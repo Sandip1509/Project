@@ -1,0 +1,25 @@
+{% extends 'publisher/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Book Details{% endblock %}
+{% block ebook_active %}active{% endblock %}
+{% block body %}
+<div class="form-container">
+  <div class="row">
+    <div class="center-block col-md-6" style="float: none;">
+
+  <form method="POST">
+      {% csrf_token %}
+         <legend class="title">Add Chapters</legend>
+          {{ form|crispy }}
+      <div class="form-group">
+        <button id="submit" name="submit" class="btn btn-success btn-md">Submit</button>
+        <a onClick="myFunction()" class="btn btn-warning btn-md">
+        <span class="glyphicon glyphicon-plus"></span>AddMore
+        </a>
+        <a href="{% url 'publisher:home'%}" class="btn btn-primary btn-sm">Back</a>
+      </div>
+    </form>
+      </div>
+  </div>
+</div>
+{% endblock %}

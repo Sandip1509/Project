@@ -11,7 +11,7 @@
 
                 <div class="col-sm-2">
                     <!-- Album logo -->
-                    <a href="{% url 'publisher:detail' ebook.id %}">
+                    <a href="{% url 'publisher:chapter-details' ebook.id%}">
                         <img src="{{ ebook.ebook_logo.url }}" class="img-responsive">
                     </a>
                 </div>
@@ -23,8 +23,13 @@
                     </div>
 
                     <!-- Details -->
-                    <a href="{% url 'publisher:detail' ebook.id %}" class="btn btn-primary btn-sm">View Details</a>
 
+                    <form action="" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="ebook_id" value="{{ ebook.id }}"/>
+                    <a href="{% url 'publisher:chapter-add' ebook.id %}" class="btn btn-primary btn-sm">Add Chapters</a>
+                    <a href="{% url 'publisher:chapter-details' ebook.id %}" class="btn btn-primary btn-sm">View Chapters</a>
+                    </form>
                     <!-- Delete -->
                     <form action="{% url 'publisher:ebook-delete' ebook.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
@@ -38,7 +43,7 @@
     </div>
             {% endfor %}
     {% else %}
-        <h3> You don't have any album </h3>
+        <h3> You don't have any Book</h3>
 
   {% endif %}
 

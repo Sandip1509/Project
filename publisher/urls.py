@@ -8,11 +8,15 @@ urlpatterns = [
     # /publisher/
     url(r'^$', views.HomeView.as_view(), name='home'),
 
-    #/publisher/<album_id>/
-    url('^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
-
     # /publisher/album/add/
     url(r'^add/$', views.EBookCreate.as_view(), name='ebook-add'),
+
+    url(r'^(?P<pk>[0-9]+)/chapters/$', views.createChapters, name='chapter-add'),
+
+    url(r'^(?P<pk>[0-9]+)/chaptersdetails/$', views.ChapterDetailView.as_view(), name='chapter-details'),
+
+    url(r'publisher/(?P<pk>[0-9]+)/chaptersdelete/$', views.ChapterDelete.as_view(), name='chapter-delete'),
+
 
     # /publisher/album/2/
     url(r'publisher/(?P<pk>[0-9]+)/$', views.EBookUpdate.as_view(), name='ebook-update'),
