@@ -55,7 +55,7 @@
                                 <td>
                                 <form>
                                  {%csrf_token%}
-                                <a onClick="addToCart()" id="{{chapter.id}}" class="btn btn-primary addToCart{{chapter.id}} enabled"><span class="glyphicon glyphicon-shopping-cart"></span>Add</a>
+                                <a onClick="addToCart()"  pk="{{chapter.id}}" class="btn btn-primary addToCart enabled"><span class="glyphicon glyphicon-shopping-cart"></span>Add</a>
                                     <!--<form action="#" method="post" style="display: inline;">
                                     {% csrf_token %}
                                     <input type="hidden" name="chapter_id" value="{{ chapter.id }}"/>

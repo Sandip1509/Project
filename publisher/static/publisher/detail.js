@@ -32,21 +32,20 @@ function buy() {
 
 
 function addToCart() {
-    var id = $(".addToCart").attr('id');
-    var url='/shopping_cart/add-to-cart/'+id+'/'
-    alert(id)
+    var pk = $(".addToCart").attr('pk')
+    var url='/shopping_cart/add-to-cart/'+pk+'/'
+    alert(pk)
     $.ajax({
         type : "POST", // http method
-        url : '/shopping_cart/add-to-cart/'+id+'/', // the endpoint
+        url : '/shopping_cart/add-to-cart/'+pk+'/', // the endpoint
         data:{
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
         },
         success : function() {
-           if ($('.addtoCart'+id).hasClass("enabled")) {
-             $('.addtoCart'+id).addClass('disabled');
+           if ($('.addToCart').hasClass("enabled")) {
+             $('.addToCart').addClass('disabled');
             }
-            alert('success')
-            return document.getElementById(id).value="added";
+            alert('success');
         },
     });
 };

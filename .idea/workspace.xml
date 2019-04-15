@@ -2,39 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="669d93e7-e01f-4781-b83d-33a95242e43b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EBook/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EBook/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EBook/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/EBook/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/templates/customer/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/customer/templates/customer/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/HalfGirlfriend_C40Dn2O.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/HalfGirlfriend_C40Dn2O_Chapter1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/HalfGirlfriend_C40Dn2O_Chapter2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/HalfGirlfriend_IbALOZI.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/OneIndianGirl_SUKphTu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/OneIndianGirl_ygkXoeE.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/OneIndianGirl_ygkXoeE_Chapter1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/OneIndianGirl_ygkXoeE_Chapter2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/templates/products/product_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/products/product_details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/publisher/static/publisher/detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/static/publisher/detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/templates/publisher/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/templates/publisher/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/templates/publisher/chapterDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/templates/publisher/chapterDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/templates/publisher/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/templates/publisher/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publisher/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/publisher/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/publisher/static/publisher/detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+            <state relative-caret-position="293">
+              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -57,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/publisher/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="423">
-              <caret line="44" column="24" lean-forward="true" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+              <caret line="92" column="28" lean-forward="true" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -68,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopping_cart/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="88" column="37" lean-forward="true" selection-start-line="88" selection-start-column="37" selection-end-line="88" selection-end-column="37" />
+            <state relative-caret-position="202">
+              <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -77,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/products/templates/products/product_details.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="185">
-              <caret line="57" column="123" selection-start-line="57" selection-start-column="123" selection-end-line="57" selection-end-column="123" />
+              <caret line="57" column="110" selection-start-line="57" selection-start-column="110" selection-end-line="57" selection-end-column="110" />
             </state>
           </provider>
         </entry>
@@ -89,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/customer/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="270">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -701,47 +672,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer/views.py">
+    <entry file="file://$PROJECT_DIR$/publisher/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <caret line="92" column="28" lean-forward="true" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/publisher/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="44" column="24" lean-forward="true" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopping_cart/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="88" column="37" lean-forward="true" selection-start-line="88" selection-start-column="37" selection-end-line="88" selection-end-column="37" />
+        <state relative-caret-position="202">
+          <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/publisher/static/publisher/detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/products/templates/products/product_details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
-          <caret line="57" column="123" selection-start-line="57" selection-start-column="123" selection-end-line="57" selection-end-column="123" />
+          <caret line="57" column="110" selection-start-line="57" selection-start-column="110" selection-end-line="57" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/publisher/static/publisher/detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
         </state>
       </provider>
     </entry>
