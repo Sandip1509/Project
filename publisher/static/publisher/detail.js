@@ -31,8 +31,9 @@ function buy() {
 };
 
 
-function addToCart() {
-    var pk = $(".addToCart").attr('pk')
+
+function addToCart(clicked_id) {
+    pk=clicked_id
     var url='/shopping_cart/add-to-cart/'+pk+'/'
     alert(pk)
     $.ajax({
@@ -42,10 +43,11 @@ function addToCart() {
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
         },
         success : function() {
-           if ($('.addToCart').hasClass("enabled")) {
-             $('.addToCart').addClass('disabled');
+           if (document.getElementById(pk)) {
+             document.getElementById(pk).setAttribute("disabled","disabled");
+             alert('jio');
             }
-            alert('success');
+           alert('success');
         },
     });
 };
