@@ -45,7 +45,7 @@
                     <div class="text-right">
                         <p>Total: {{sum}}</p>
                     <form>
-                        {%csrf_token%}
+                        {% csrf_token %}
                     <a onClick="buy()"  class="btn btn-primary active"><span class="glyphicon glyphicon-triangle-right"></span>Buy Now</a>
                     <a href="/media/combined.pdf" class="btn btn-warning download-btn disabled" download><span class="glyphicon glyphicon-download-alt"></span>Download Pdf</a>
                     </form>

@@ -32,10 +32,9 @@ function buy() {
 
 
 
-function addToCart(clicked_id) {
+function addToCart(clicked_id,name) {
     pk=clicked_id
     var url='/shopping_cart/add-to-cart/'+pk+'/'
-    alert(pk)
     $.ajax({
         type : "POST", // http method
         url : '/shopping_cart/add-to-cart/'+pk+'/', // the endpoint
@@ -45,9 +44,8 @@ function addToCart(clicked_id) {
         success : function() {
            if (document.getElementById(pk)) {
              document.getElementById(pk).setAttribute("disabled","disabled");
-             alert('jio');
             }
-           alert('success');
+           alert(name+' successfully added to Cart!');
         },
     });
 };

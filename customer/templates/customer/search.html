@@ -1,0 +1,32 @@
+{% extends 'customer/base.html' %}
+{% block body %}
+<div class="container-fluid">
+    {% if ebook_list %}
+      {% for ebook in ebook_list %}
+    <div class="col-xs-4 col-md-2">
+    <div class="thumbnail">
+        <div class="center-block" style="float: none;">
+            <!-- Album logo -->
+            <a href="{% url 'products:chapterdetails' ebook.pk %}">
+                <img src="{{ ebook.ebook_logo.url }}" class="img-responsive">
+            </a>
+            <!--<div class="col-md-2" style="float: none;">
+                <h2>{{ ebook.title }}</h2>
+                <h4>{{ ebook.author }}</h4>
+                <h4>{{ ebook.genre }}</h4>
+            </div>-->
+            <!-- Details -->
+            <form action="" method="post" style="display: inline;">
+                {% csrf_token %}
+            <a href="{% url 'products:chapterdetails' ebook.pk %}" class="btn btn-primary btn-sm">View Chapters</a>
+            </form>
+            </div>
+         </div>
+
+    </div>
+    {% endfor %}
+    {% else %}
+        <h3> Sorry! No Book Available According To your Choice!</h3>
+  {% endif %}
+</div>
+{% endblock %}

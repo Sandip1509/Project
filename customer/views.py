@@ -52,3 +52,23 @@ def Buy(request):
 class OrderItemDelete(DeleteView):
     model = OrderItem
     success_url = reverse_lazy('customer:home')
+
+
+# class OrderDelete(DeleteView):
+#     model = Order
+#     success_url = reverse_lazy('customer:home')
+
+
+
+def search(request):
+    if request.method == 'POST':
+        book_name =  request.POST.get('search')
+        print(book_name)
+        try:
+            status = EBook.objects.filter(title__icontains=book_name)
+            #Add_prod class contains a column called 'bookname'
+        except EBook.DoesNotExist:
+            status = None
+        return render(request,"customer/search.html",{"ebook_list":status})
+    else:
+        return render(request,"customer/search.html")
