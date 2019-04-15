@@ -1,7 +1,7 @@
 from django.contrib.admin.widgets import AdminDateWidget
 from django.forms.fields import DateField
 from django import forms
-from .models import EBook, Chapter
+from products.models import EBook, Chapter
 from django.conf import settings
 
 class DateInput(forms.DateInput):

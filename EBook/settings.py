@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'publisher.apps.PublisherConfig',
     'customer.apps.CustomerConfig',
     'crispy_forms',
+    'shopping_cart.apps.ShoppingCartConfig',
+    'products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,31 @@ MEDIA_URL = '/media/'
 #LOGIN_URL ='/website/user_login'
 
 #AUTH_USER_MODEL = 'website.UserProfile'
+
+# Stripe and Braintree Settings
+
+if DEBUG:
+    # test keys
+    STRIPE_PUBLISHABLE_KEY = ''
+    STRIPE_SECRET_KEY = ''
+    BT_ENVIRONMENT='sandbox'
+    BT_MERCHANT_ID=''
+    BT_PUBLIC_KEY=''
+    BT_PRIVATE_KEY=''
+else:
+    # live keys
+    STRIPE_PUBLISHABLE_KEY = 'YOUR STRIPE LIVE PUB KEY'
+    STRIPE_SECRET_KEY = 'YOUR STRIPE LIVE SECRET KEY'
+
+
+
+
+# Django AllAuth Settings
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+

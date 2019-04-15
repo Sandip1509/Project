@@ -59,7 +59,7 @@ def user_login(request):
                         if(accountType=='Publisher'):
                             return redirect('publisher:home')
                         if(accountType=='Customer'):
-                            return redirect('customer:home')
+                            return redirect('products:product-list')
                     else:
                         messages.error(request, "Provide valid credentials !!")
             else:

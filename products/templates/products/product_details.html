@@ -1,0 +1,80 @@
+{% extends 'customer/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Book Details{% endblock %}
+{% block body %}
+<div class="chapter-container container-fluid">
+    {% if ebook %}
+    <div class="row">
+            <div class="col-sm-4 col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="{% url 'products:product-list' %}">
+                            <img src="{{ ebook.ebook_logo.url }}" alt="ebook_logo" class="img-responsive">
+                        </a>
+                        <h1>{{ ebook.title }}
+                            <small>{{ ebook.genre }}</small>
+                        </h1>
+                        <h2>{{ ebook.author }} </h2>
+                    </div>
+                </div>
+            </div>
+        <div class="col-sm-4 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>All Chapters</h3>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Chapter Name</th>
+                                <th>Description</th>
+                                <th>Start Page</th>
+                                <th>End Page</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for chapter in object_list %}
+
+                            <tr>
+                                <td>
+                                    {{chapter.name}}
+                                </td>
+                                <td>
+                                    {{chapter.description}}
+                                </td>
+                                <td>
+                                    {{chapter.start_page}}
+                                </td>
+                                <td>
+                                    {{chapter.end_page}}
+                                </td>
+                                <td>
+                                    {{chapter.price}}
+                                </td>
+                                <td>
+                                <form>
+                                 {%csrf_token%}
+                                <a onClick="addToCart()" id="{{chapter.id}}" class="btn btn-primary addToCart{{chapter.id}} enabled"><span class="glyphicon glyphicon-shopping-cart"></span>Add</a>
+                                    <!--<form action="#" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="chapter_id" value="{{ chapter.id }}"/>
+                                    <button type="submit" class="btn btn-warning btn-sm">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>Add
+                                    </button>-->
+                                </form>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <h3> You don't have any seperated chapters </h3>
+    {% endif %}
+</div>
+{% endblock %}

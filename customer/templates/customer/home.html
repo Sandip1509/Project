@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Customer Home</h1>
-</body>
-</html>
+{% extends 'customer/base.html' %}
+{% block body %}
+    {{ message }}
+{% if my_orders %}
+<div class="form-container">
+    <div class="row">
+    {% for order in my_orders %}
+            <div class="center-block col-md-6" style="float: none;">
+                <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Order Summary</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Book Name</th>
+                                <th>Chapter Name</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for items in order.items.all %}
+                            <tr>
+                                <td>
+                                    {{ items.product.ebook }}
+                                </td>
+                                <td>
+                                    {{ items.product.name }}
+                                </td>
+                                <td>
+                                    {{ items.product.price }}
+                                </td>
+                                <td>
+                                    <form action="{% url 'customer:OrderItemDelete' items.id %}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="text-right">
+                        <p>Total: {{sum}}</p>
+                    <form>
+                        {%csrf_token%}
+                    <a onClick="buy()"  class="btn btn-primary active"><span class="glyphicon glyphicon-triangle-right"></span>Buy Now</a>
+                    <a href="/media/combined.pdf" class="btn btn-warning download-btn disabled" download><span class="glyphicon glyphicon-download-alt"></span>Download Pdf</a>
+                    </form>
+                    </div>
+                </div>
+                </div>
+
+
+                <!--{% if order in user.profile.ebooks.all %}
+                &lt;!&ndash; add a button here to see the product &ndash;&gt;
+                You own this
+                {% elif object in current_order_products %}
+                <a href="{% url 'shopping_cart:order_summary' %}" class="btn btn-warning">Go to Cart</a>
+                {% else %}
+
+                {% endif %}
+                <br><br>-->
+            </div>
+
+    {% endfor %}
+    </div>
+</div>
+{% else %}
+    <h3> You don't have any order</h3>
+{% endif%}
+{% endblock %}

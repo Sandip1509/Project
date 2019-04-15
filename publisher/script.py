@@ -28,3 +28,23 @@ def pdf_splitter(path,start_page,end_page,chapter_name,book_name):
     print('Created: {}'.format(chapter_name))
     return chapter_name,path
 
+
+def pdf_cat(input_files):
+    input_streams = []
+    try:
+        for input_file in input_files:
+            input_streams.append(open(input_file, 'rb'))
+        pdf_writer = PdfFileWriter()
+        for reader in map(PdfFileReader, input_streams):
+            for n in range(reader.getNumPages()):
+                pdf_writer.addPage(reader.getPage(n))
+
+        path = settings.MEDIA_ROOT + '\\' + 'combined.pdf'
+        with open(path, 'wb') as out:
+            pdf_writer.write(out)
+
+        print('Created combined file')
+
+    finally:
+        for f in input_streams:
+            f.close()

@@ -3,31 +3,41 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render_to_response
 from django.shortcuts import render,redirect
-from .models import EBook, Chapter
+from products.models import EBook, Chapter
 from .forms import MyForm, MyChapterForm
 from django.http import HttpResponse
 from .script import pdf_splitter
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+from django.shortcuts import render, get_object_or_404
+
+from shopping_cart.models import Order
+from .models import PublisherProfile
 
 
-class HomeView(generic.ListView):
-    template_name = "publisher/home.html"
-    context_object_name = "object_list"
-    def get_queryset(self):
-        return EBook.objects.all()
+# class HomeView(generic.ListView):
+#     template_name = "publisher/home.html"
+#     context_object_name = "object_list"
+#     def get_queryset(self):
+#         return EBook.objects.all()
+
+
 
 class ChapterDetailView(generic.ListView):
     template_name = "publisher/chapterDetail.html"
     context_object_name = "ebook"
     def get_queryset(self):
-        return EBook.objects.get(id=self.kwargs.get('pk'))
+        my_user_profile = PublisherProfile.objects.filter(user=self.request.user).first()
+        ebooks = EBook.objects.filter(publisher=my_user_profile)
+        return ebooks.get(id=self.kwargs.get('pk'))
 
 
 class EBookCreate(CreateView):
     form_class = MyForm
     template_name = "publisher/ebook_form.html"
 
-
+@login_required()
 def createChapters(request, pk):
     print(request.POST)
     chapter_form = MyChapterForm()
@@ -45,7 +55,6 @@ def createChapters(request, pk):
             chapter = chapter_form.save(commit=False)
             chapter.ebook = EBook.objects.get(id=c_id)
             chapter.save()
-            messages.success(request, f' Chapter created for!',book_name)
             url_name=EBook.objects.get(id=c_id).bookurl
 
             print(url_name+'\\'+book_name)
@@ -56,6 +65,16 @@ def createChapters(request, pk):
     else:
         chapter_form = MyChapterForm()
     return render(request, 'publisher/createchapters.html', {'form':chapter_form})
+
+
+
+def home(request):
+	my_user_profile = PublisherProfile.objects.filter(user=request.user).first()
+	ebooks = EBook.objects.filter(publisher=my_user_profile)
+	context = {
+		'ebooks': ebooks
+	}
+	return render(request, "publisher/home.html", context)
 
 
 class EBookUpdate(UpdateView):
