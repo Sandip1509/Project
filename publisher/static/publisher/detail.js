@@ -56,7 +56,6 @@ function addToCart(clicked_id,name) {
 
 function orderDelete(clicked_id) {
     var pk=clicked_id
-    alert(pk)
     var url='/customer/'+pk+'/orderdelete/'
     $.ajax({
         type : "POST", // http method

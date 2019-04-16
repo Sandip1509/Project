@@ -5,9 +5,10 @@
 
 
 import os
-import math
 from .PyPDF3 import PdfFileReader, PdfFileWriter
 from django.conf import settings
+from .fpdf import FPDF
+
 def pdf_splitter(path,start_page,end_page,chapter_name,book_name):
     print('path: ',path,'no: ',type(start_page))
     fname = os.path.splitext(os.path.basename(path))[0]
@@ -48,3 +49,28 @@ def pdf_cat(input_files):
     finally:
         for f in input_streams:
             f.close()
+
+
+
+def make_Introduction(data):
+    spacing = 1
+    pdf = FPDF()
+    pdf.set_font("Times", size=30)
+    pdf.add_page()
+
+    col_width = pdf.w / 2
+    row_height = pdf.font_size
+    pdf.cell(col_width, row_height * spacing,
+             txt="Index", border=0, align='R')
+    pdf.ln(row_height * spacing)
+    pdf.ln(row_height * spacing)
+
+    col_width = pdf.w / 4.5
+    pdf.set_font("Times", size=12)
+    for row in data:
+        for item in row:
+            pdf.cell(col_width, row_height * spacing,
+                     txt=item, border=0)
+        pdf.ln(row_height * spacing)
+
+    pdf.output(settings.MEDIA_ROOT+'\\'+'simple_table.pdf')
