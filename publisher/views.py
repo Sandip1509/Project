@@ -51,7 +51,7 @@ def createChapters(request, pk):
             chapter_name=request.POST.get('name')
             c_id=pk
             print(c_id,type(c_id))
-            book_name=str(EBook.objects.get(id=c_id))
+            book_name=str(EBook.objects.get(id=c_id).bookpdf.name)
             chapter = chapter_form.save(commit=False)
             chapter.ebook = EBook.objects.get(id=c_id)
             chapter.save()
@@ -67,7 +67,7 @@ def createChapters(request, pk):
     return render(request, 'publisher/createchapters.html', {'form':chapter_form})
 
 
-
+@login_required()
 def home(request):
 	my_user_profile = PublisherProfile.objects.filter(user=request.user).first()
 	ebooks = EBook.objects.filter(publisher=my_user_profile)
@@ -91,3 +91,17 @@ class EBookDelete(DeleteView):
 class ChapterDelete(DeleteView):
     model = Chapter
     success_url = reverse_lazy('publisher:home')
+
+@login_required()
+def search(request):
+    if request.method == 'POST':
+        book_name =  request.POST.get('search')
+        print(book_name)
+        try:
+            status = EBook.objects.filter(title__icontains=book_name)
+            #Add_prod class contains a column called 'bookname'
+        except EBook.DoesNotExist:
+            status = None
+        return render(request,"publisher/search.html",{"ebook_list":status})
+    else:
+        return render(request,"publisher/search.html")

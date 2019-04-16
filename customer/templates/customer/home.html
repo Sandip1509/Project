@@ -44,11 +44,21 @@
                     </table>
                     <div class="text-right">
                         <p>Total: {{sum}}</p>
+
+                    <div class="col-md-4">
                     <form>
                         {% csrf_token %}
-                    <a onClick="buy()"  class="btn btn-primary active"><span class="glyphicon glyphicon-triangle-right"></span>Buy Now</a>
-                    <a href="/media/combined.pdf" class="btn btn-warning download-btn disabled" download><span class="glyphicon glyphicon-download-alt"></span>Download Pdf</a>
+                    <a onClick="buy()" class="btn btn-primary buy-btn"><span class="glyphicon glyphicon-triangle-right"></span>Buy Now</a>
                     </form>
+                    </div>
+
+                    <div class="col-md-8">
+                    <form>
+                        {% csrf_token %}
+                        <a onclick="orderDelete(this.id)" id={{order.id}} href="/media/combined.pdf" class="btn btn-warning download-btn disabled" download><span class="glyphicon glyphicon-download-alt"></span>Download Pdf</a>
+                    </form>
+                    </div>
+
                     </div>
                 </div>
                 </div>

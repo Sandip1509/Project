@@ -12,6 +12,8 @@ urlpatterns = [
     # /publisher/album/add/
     url(r'^add/$', login_required(views.EBookCreate.as_view()), name='ebook-add'),
 
+    url(r'^search/$', views.search , name='search'),
+
     url(r'^(?P<pk>[0-9]+)/chapters/$', views.createChapters, name='chapter-add'),
 
     url(r'^(?P<pk>[0-9]+)/chaptersdetails/$', login_required(views.ChapterDetailView.as_view()), name='chapter-details'),

@@ -36,15 +36,11 @@
                         <span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbspEBooks
                     </a>
                 </li>
-                <li class="">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>&nbsp;Chapters
-                    </a>
-                </li>
             </ul>
-            <form class="navbar-form navbar-left" role="search" method="get" action="#">
+            <form class="navbar-form navbar-left" role="search" method="POST" action="{% url 'publisher:search' %}">
+                {% csrf_token %}
                 <div class="form-group">
-                    <input type="text" class="form-control" name="q" value="">
+                    <input type="text" class="form-control" name="search" value="">
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search

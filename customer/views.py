@@ -54,9 +54,9 @@ class OrderItemDelete(DeleteView):
     success_url = reverse_lazy('customer:home')
 
 
-# class OrderDelete(DeleteView):
-#     model = Order
-#     success_url = reverse_lazy('customer:home')
+class OrderDelete(DeleteView):
+    model = Order
+    success_url = reverse_lazy('customer:home')
 
 
 
