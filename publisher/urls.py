@@ -16,6 +16,8 @@ urlpatterns = [
 
     url(r'^(?P<pk>[0-9]+)/chapters/$', views.createChapters, name='chapter-add'),
 
+    url(r'^(?P<pk>[0-9]+)/chaptersCSV/$', views.createChaptersUsingCSV, name='chapter-add-csv'),
+
     url(r'^(?P<pk>[0-9]+)/chaptersdetails/$', login_required(views.ChapterDetailView.as_view()), name='chapter-details'),
 
     url(r'publisher/(?P<pk>[0-9]+)/chaptersdelete/$', login_required(views.ChapterDelete.as_view()), name='chapter-delete'),

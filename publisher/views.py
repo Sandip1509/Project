@@ -14,8 +14,8 @@ from django.shortcuts import render, get_object_or_404
 
 from shopping_cart.models import Order
 from .models import PublisherProfile
-
-
+import csv
+import io
 # class HomeView(generic.ListView):
 #     template_name = "publisher/home.html"
 #     context_object_name = "object_list"
@@ -56,7 +56,6 @@ def createChapters(request, pk):
             chapter.ebook = EBook.objects.get(id=c_id)
             chapter.save()
             url_name=EBook.objects.get(id=c_id).bookurl
-
             print(url_name+'\\'+book_name)
             ebook=url_name+'\\'+book_name
             print('Type:', type(ebook))
@@ -64,7 +63,32 @@ def createChapters(request, pk):
             pdf_splitter(ebook,start_page,end_page,chapter_name,book_name)
     else:
         chapter_form = MyChapterForm()
-    return render(request, 'publisher/createchapters.html', {'form':chapter_form})
+    return render(request, 'publisher/createchapters.html', {'form':chapter_form,'pk':pk})
+
+
+def createChaptersUsingCSV(request, pk):
+    print(pk)
+    file_name=request.FILES['fileToUpload']
+    print(type(file_name))
+    ebook=EBook.objects.get(id=pk)
+    my_user_profile = PublisherProfile.objects.filter(user=request.user).first()
+    ebook = EBook.objects.filter(publisher=my_user_profile).get(id=pk)
+    context = {
+        'ebook': ebook
+    }
+    file_name.seek(0)
+    reader = csv.DictReader(io.StringIO(file_name.read().decode('utf-8')))
+    for row in reader:
+        book_name = str(EBook.objects.get(id=pk).bookpdf.name)
+        url_name = EBook.objects.get(id=pk).bookurl
+        ebook_url = url_name + '\\' + book_name
+        start_page=row['start_page']
+        end_page = row['end_page']
+        chapter_name=row['name']
+        pdf_splitter(ebook_url, start_page, end_page, chapter_name, book_name)
+        p = Chapter(ebook=ebook,name=row['name'], description=row['description'],start_page=row['start_page'],end_page=row['end_page'],price=row['price'])
+        p.save()
+    return render(request,"publisher/chapterDetail.html",context)
 
 
 @login_required()
@@ -90,7 +114,12 @@ class EBookDelete(DeleteView):
 
 class ChapterDelete(DeleteView):
     model = Chapter
-    success_url = reverse_lazy('publisher:home')
+    def get_success_url(self):
+        pk=self.kwargs['pk']
+        ebook=Chapter.objects.get(id=pk).ebook.title
+        ebook_pk = EBook.objects.filter(title=ebook)[0].id
+        return reverse_lazy('publisher:chapter-details', kwargs={'pk': ebook_pk})
+
 
 @login_required()
 def search(request):

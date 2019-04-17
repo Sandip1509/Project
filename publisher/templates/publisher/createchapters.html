@@ -16,9 +16,18 @@
         <a onClick="myFunction()" class="btn btn-warning btn-md">
         <span class="glyphicon glyphicon-plus"></span>AddMore
         </a>
+          <a  class="btn btn-warning btn-md upload-btn">
+        <span class="glyphicon glyphicon-plus"></span>Upload CSV
+        </a>
         <a href="{% url 'publisher:home'%}" class="btn btn-primary btn-sm">Back</a>
       </div>
     </form>
+        <form id="fileUpload" action="{%url 'publisher:chapter-add-csv' pk%}" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+            Select csv to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload CSV" name="submit" class="btn btn-success btn-md">
+        </form>
       </div>
   </div>
 </div>

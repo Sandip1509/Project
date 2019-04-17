@@ -68,3 +68,16 @@ function orderDelete(clicked_id) {
         },
     });
 };
+
+
+//function openForm() {
+//    $('.fileUpload').removeClass('hidden');
+//    $('.fileUpload').removeClass('active');
+//}
+//
+
+$(document).ready(function(){
+$('.upload-btn').click(function(){
+$('#fileUpload').toggle(500);
+});
+});
