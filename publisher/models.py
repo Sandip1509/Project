@@ -7,7 +7,6 @@ class PublisherProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ebooks = models.ManyToManyField(EBook, blank=True)
 
-
     def __str__(self):
         return self.user.username
 

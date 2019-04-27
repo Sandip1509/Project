@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block title %}Book Details{% endblock %}
 {% block body %}
+<div class="main">
 <div class="chapter-container container-fluid">
     {% if ebook %}
     <div class="row">
@@ -76,5 +77,7 @@
     {% else %}
         <h3> You don't have any seperated chapters </h3>
     {% endif %}
+</div>
+<p class="footer">Copyright © Group 5 DS 603/DM 2019 EBooks Details Widget. All Rights Reserved | Template by <a href="http://localhost:8000/customer/pay/" target="_blank">Custom EBook</a></p>
 </div>
 {% endblock %}

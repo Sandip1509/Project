@@ -53,6 +53,11 @@
                     </a>
                 </li>
                 <li class="">
+                    <a href="{% url 'publisher:home' %}">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp{{ request.user }}
+                    </a>
+                </li>
+                <li class="">
                     <a href="{% url 'website:logout' %}">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
                     </a>

@@ -1,11 +1,12 @@
 {% extends 'customer/base.html' %}
 {% block body %}
+<!--<div class="main">-->
 <div class="container-fluid">
     {% if ebook_list %}
       {% for ebook in ebook_list %}
-    <div class="col-xs-4 col-md-2">
+    <div class="col-sm-2 col-sm-2">
     <div class="thumbnail">
-        <div class="center-block" style="float: none;">
+
             <!-- Album logo -->
             <a href="{% url 'products:chapterdetails' ebook.pk %}">
                 <img src="{{ ebook.ebook_logo.url }}" class="img-responsive">
@@ -20,7 +21,7 @@
                 {% csrf_token %}
             <a href="{% url 'products:chapterdetails' ebook.pk %}" class="btn btn-primary btn-sm">View Chapters</a>
             </form>
-            </div>
+
          </div>
 
     </div>
@@ -29,4 +30,6 @@
         <h3> No Book To Display</h3>
   {% endif %}
 </div>
+    <!--<p class="footer">Copyright © Group 5 DS 603/DM 2019 EBooks Widget. All Rights Reserved | Template by <a href="http://localhost:8000/customer/pay/" target="_blank">Custom EBook</a></p>-->
+<!--</div>-->
 {% endblock %}

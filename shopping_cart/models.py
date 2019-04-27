@@ -4,16 +4,15 @@ from django.db import models
 
 from customer.models import CustomerProfile
 from products.models import Chapter
-
+from datetime import datetime
 
 class OrderItem(models.Model):
     product = models.OneToOneField(Chapter, on_delete=models.SET_NULL, null=True)
     is_ordered = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now=True)
-    date_ordered = models.DateTimeField(null=True)
 
-    def __str__(self):
-        return self.product.name
+    def __Chapter__(self):
+        return self.product
 
 
 class Order(models.Model):
@@ -21,7 +20,7 @@ class Order(models.Model):
     owner = models.ForeignKey(CustomerProfile, on_delete=models.SET_NULL, null=True)
     is_ordered = models.BooleanField(default=False)
     items = models.ManyToManyField(OrderItem)
-    date_ordered = models.DateTimeField(auto_now=True)
+    date_ordered = models.DateTimeField(default=datetime.now())
 
     def get_cart_items(self):
         return self.items.all()

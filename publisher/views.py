@@ -4,16 +4,17 @@ from django.urls import reverse_lazy
 from django.shortcuts import render_to_response
 from django.shortcuts import render,redirect
 from products.models import EBook, Chapter
-from .forms import MyForm, MyChapterForm
+from products.forms import MyForm, MyChapterForm
 from django.http import HttpResponse
 from .script import pdf_splitter
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_object_or_404
 
 from shopping_cart.models import Order
 from .models import PublisherProfile
+from django.contrib.auth.models import User
 import csv
 import io
 # class HomeView(generic.ListView):
@@ -29,13 +30,18 @@ class ChapterDetailView(generic.ListView):
     context_object_name = "ebook"
     def get_queryset(self):
         my_user_profile = PublisherProfile.objects.filter(user=self.request.user).first()
-        ebooks = EBook.objects.filter(publisher=my_user_profile)
+        user = User.objects.filter(username=my_user_profile).first()
+        ebooks = EBook.objects.filter(publisher=user)
         return ebooks.get(id=self.kwargs.get('pk'))
 
 
 class EBookCreate(CreateView):
     form_class = MyForm
+    def form_valid(self, form):
+        form.instance.publisher = self.request.user
+        return super(EBookCreate, self).form_valid(form)
     template_name = "publisher/ebook_form.html"
+    success_url = reverse_lazy('publisher:home')
 
 @login_required()
 def createChapters(request, pk):
@@ -61,18 +67,20 @@ def createChapters(request, pk):
             print('Type:', type(ebook))
             print(ebook)
             pdf_splitter(ebook,start_page,end_page,chapter_name,book_name)
+
     else:
         chapter_form = MyChapterForm()
     return render(request, 'publisher/createchapters.html', {'form':chapter_form,'pk':pk})
 
-
+login_required
 def createChaptersUsingCSV(request, pk):
     print(pk)
     file_name=request.FILES['fileToUpload']
     print(type(file_name))
     ebook=EBook.objects.get(id=pk)
     my_user_profile = PublisherProfile.objects.filter(user=request.user).first()
-    ebook = EBook.objects.filter(publisher=my_user_profile).get(id=pk)
+    user = User.objects.filter(username=my_user_profile).first()
+    ebook = EBook.objects.filter(publisher=user).get(id=pk)
     context = {
         'ebook': ebook
     }
@@ -93,12 +101,13 @@ def createChaptersUsingCSV(request, pk):
 
 @login_required()
 def home(request):
-	my_user_profile = PublisherProfile.objects.filter(user=request.user).first()
-	ebooks = EBook.objects.filter(publisher=my_user_profile)
-	context = {
+    my_user_profile = PublisherProfile.objects.filter(user=request.user).first()
+    user=User.objects.filter(username = my_user_profile).first()
+    ebooks = EBook.objects.filter(publisher=user)
+    context = {
 		'ebooks': ebooks
 	}
-	return render(request, "publisher/home.html", context)
+    return render(request, "publisher/home.html", context)
 
 
 class EBookUpdate(UpdateView):

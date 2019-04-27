@@ -2,14 +2,16 @@ from django.db import models
 from django.urls import reverse
 import datetime
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 class EBook(models.Model):
     title = models.CharField(max_length=500)
     author = models.CharField(max_length=500)
-    publisher = models.CharField(max_length=500)
+    publisher = models.ForeignKey(User, on_delete=models.CASCADE)
     published_date = models.DateField(default=datetime.date.today)
     genre = models.CharField(max_length=100)
+    keyword = models.CharField(max_length=1000, null=True)
     ebook_logo = models.FileField()
     bookpdf = models.FileField(blank=True, null=True)
     bookurl = models.CharField(max_length=500, default=settings.MEDIA_ROOT)

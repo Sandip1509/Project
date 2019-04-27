@@ -162,3 +162,10 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #configure according to your mail domain
+EMAIL_HOST='smtp.live.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER=#your email
+EMAIL_HOST_PASSWORD=#Your password
+EMAIL_USE_TLS=True #configure according to your mail domain
+EMAIL_USE_SSL=False #configure according to your mail domain

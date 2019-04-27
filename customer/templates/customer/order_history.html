@@ -1,0 +1,58 @@
+{% extends 'customer/base.html' %}
+{% block body %}
+    {{ message }}
+<div class="main">
+{% if my_orders %}
+<div class="form-container">
+    <div class="row">
+        <h1>Previous Orders</h1>
+    {% for order in my_orders %}
+            <div class="center-block col-md-20" style="float: none;">
+                <p style="color:blue;"><b>Order ID: </b>{{order.ref_code}}</p>
+                <a href="/media/{{order.ref_code}}.pdf" class="btn btn-warning download-btn" download><span class="glyphicon glyphicon-download-alt"></span>Download Pdf</a>
+                <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <table class="table" id="tableID">
+                        <thead>
+                            <tr>
+                                <th>Book Name</th>
+                                <th>Chapter Name</th>
+                                <th>Date Added</th>
+                                <th>Date ordered</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for items in order.items.all %}
+                            <tr id="{{items.product.id}}">
+                                <td>
+                                    {{ items.product.ebook }}
+                                </td>
+                                <td>
+                                    {{ items.product.name }}
+                                </td>
+                                <td>
+                                    {{ items.date_added }}
+                                </td>
+                                <td>
+                                    {{ order.date_ordered }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+
+            </div>
+    {% endfor %}
+    </div>
+</div>
+{% else %}
+    <h3> You don't have any previous order</h3>
+{% endif%}
+<p class="footer">Copyright © Group 5 DS 603/DM 2019 Order Summary Widget. All Rights Reserved | Template by <a href="http://localhost:8000/customer/" target="_blank">Custom EBook</a></p>
+<br>
+</div>
+{% endblock %}

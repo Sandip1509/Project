@@ -13,7 +13,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy" type="text/css">
     <link rel="stylesheet" type="text/css" href="{% static 'publisher/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'publisher/pay_style.css' %}"/>
     <script src="{% static 'publisher/detail.js' %}"></script>
+    <script src="{% static 'publisher/easyResponsiveTabs.js' %}"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -36,12 +39,13 @@
                         <span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbspEBooks
                     </a>
                 </li>
-                <li class="">
-                    <a href="{% url 'customer:home' %}">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbspProfile
-                    </a>
-                </li>
+                <!--<li class="">-->
+                    <!--<a href="{% url 'customer:home' %}">-->
+                        <!--<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp{{ request.user }}-->
+                    <!--</a>-->
+                <!--</li>-->
             </ul>
+            <ul class="nav navbar-nav">
             <form class="navbar-form navbar-left" role="search" method="POST" action="{% url 'customer:search' %}">
                 {% csrf_token %}
                 <div class="form-group">
@@ -51,18 +55,42 @@
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search
                 </button>
             </form>
-
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="{% url 'customer:home' %}">
-                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Cart
-                    </a>
-                </li>
-                <li class="">
-                    <a href="{% url 'website:logout' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
-                    </a>
-                </li>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>&nbsp{{ request.user }}
+                        <!--<span class="caret"></span>-->
+                    </button>
+                    <ul class="nav navbar-nav dropdown-menu">
+                        <li class="">
+                            <a href="{% url 'customer:home' %}">
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Cart
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'customer:order_history' %}">
+                                <span class="glyphicon glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;order_history
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{% url 'website:logout' %}">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--<ul class="nav navbar-nav navbar-right">-->
+                    <!--<li class="">-->
+                        <!--<a href="{% url 'customer:home' %}">-->
+                            <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Cart-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="">-->
+                        <!--<a href="{% url 'website:logout' %}">-->
+                            <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout-->
+                        <!--</a>-->
+                    <!--</li>-->
             </ul>
         </div>
         </div>

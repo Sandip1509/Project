@@ -16,6 +16,7 @@ def register(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user_form.cleaned_data['password1'])
+            user.is_active=False
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
@@ -43,34 +44,37 @@ def register(request):
 
 
 def user_login(request):
-
     if request.method == "POST":
         login_form = LogInForm(data=request.POST)
-        profile_form = RegistrationForm(data=request.POST)
-        if login_form.is_valid and profile_form.is_valid:
+        # profile_form = RegistrationForm(data=request.POST)
+        if login_form.is_valid:
             username = request.POST.get('username')
             password = request.POST.get('password')
-            accountType = request.POST.get('accountType')
+            # accountType = request.POST.get('accountType')
             user = authenticate(username=username, password=password)
             if user:
+                print('is active or not..!!')
                 if user.is_active:
-                    if(UserProfile.objects.get(user_id=user.id).accountType==accountType):
-                        login(request, user)
-                        if(accountType=='Publisher'):
-                            return redirect('publisher:home')
-                        if(accountType=='Customer'):
-                            return redirect('products:product-list')
-                    else:
-                        messages.error(request, "Provide valid credentials !!")
+                    print('Active ')
+                    accountType=UserProfile.objects.get(user_id=user.id).accountType
+                    # if(UserProfile.objects.get(user_id=user.id).accountType==accountType):
+                    login(request, user)
+                    if(accountType=='Publisher'):
+                        return redirect('publisher:home')
+                    if(accountType=='Customer'):
+                        return redirect('products:product-list')
+                else:
+                    messages.error(request, "Your account is not active yet..!!")
             else:
-                 messages.error(request, "Provide valid credentials !!")
+                print('credential part..!!')
+                messages.error(request,"Your account is not active yet..!!")
         else:
-            messages.error(request,"Provide valid credentials !!")
-            return render(request, "website/login.html", {'login_form' : login_form, 'profile_form' : profile_form})
+            messages.error(request,"Login Form is not valid!!")
+            return render(request, "website/login.html", {'login_form' : login_form})
     else:
         login_form = LogInForm()
-        profile_form = RegistrationForm()
-    return render(request, "website/login.html",{'login_form':login_form, 'profile_form':profile_form})
+        # profile_form = RegistrationForm()
+    return render(request, "website/login.html",{'login_form':login_form})
 
 
 @login_required

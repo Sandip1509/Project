@@ -56,8 +56,8 @@
                                     <form action="{% url 'publisher:chapter-delete' chapter.id %}" method="post" style="display: inline;">
                                     {% csrf_token %}
                                     <input type="hidden" name="chapter_id" value="{{ chapter.id }}"/>
-                                    <button type="submit" class="btn btn-default btn-sm">
-                                        <span class="glyphicon glyphicon-trash"></span>
+                                    <button type="submit" onclick="return confirm('Are you sure you want to delete?');" class="btn btn-default btn-sm">
+                                        <span  class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </form>
 
